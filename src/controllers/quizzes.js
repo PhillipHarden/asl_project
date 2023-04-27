@@ -1,27 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const { Quiz } = require("../models");
 const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({ extended: false }));
 const { isAuthenticated } = require("../middlewares/auth");
+const { Quiz, Question, Choice } = require("../models/index");
+const { quizzIsValid } = require("../middlewares/forms");
 
 //* View the quizzes
-router.get("/", isAuthenticated, async (req, res) => {
-  const quizzes = await Quiz.findAll(); // Loads all Quizzes
-  if (req.headers.accept.indexOf("/json") > -1) {
-    res.json(quizzes);
-  } else {
-    res.render("quiz/index", { quizzes });
-  }
+//? http://localhost:3000/quizzes
+router.get("/", async (req, res) => {
+  const quizzes = await Quiz.findAll({
+    include: [{ model: Question, include: [Choice] }],
+  });
+  res.json(quizzes);
 });
 
+
+
 //* Form
-router.get("/new", isAuthenticated, (req, res) => {
+router.get("/new", (req, res) => {
   res.render("quiz/create");
 });
 
 //* Create a new quiz
-router.post("/", isAuthenticated, async (req, res) => {
+router.post("/", async (req, res) => {
   const { name, weight } = req.body;
   const quiz = await Quiz.create({ name, weight });
   if (req.headers.accept.indexOf("/json") > -1) {
@@ -32,23 +34,22 @@ router.post("/", isAuthenticated, async (req, res) => {
 });
 
 //* View a single Quiz by id
-router.get("/:id", isAuthenticated, async (req, res) => {
-  const quiz = await Quiz.findByPk(req.params.id);
-  if (req.headers.accept.indexOf("/json") > -1) {
-    res.json(quiz);
-  } else {
-    res.render("quiz/show", { quiz });
-  }
+//? http://localhost:3000/quizzes/1
+router.get("/:id", async (req, res) => {
+  const quiz = await Quiz.findByPk(Number(req.params.id), {
+    include: [{ model: Question, include: [Choice] }],
+  });
+  res.json(quiz);
 });
 
 //* Form
-router.get("/:id/edit", isAuthenticated, async (req, res) => {
+router.get("/:id/edit", async (req, res) => {
   const quiz = await Quiz.findByPk(req.params.id);
   res.render("quiz/edit", { quiz });
 });
 
 //* Update/Edit a quiz by id
-router.post("/:id", isAuthenticated, async (req, res) => {
+router.post("/:id", async (req, res) => {
   const { name, weight } = req.body;
   const { id } = req.params;
   const quiz = await Quiz.update(
@@ -57,24 +58,20 @@ router.post("/:id", isAuthenticated, async (req, res) => {
       where: { id },
     }
   );
-  if (req.headers.accept.indexOf("/json") > -1) {
-    res.json(quiz);
-  } else {
-    res.redirect("/quizzes/" + id);
-  }
+  res.json(quiz);
+  // if (req.headers.accept.indexOf("/json") > -1) {
+  //   res.json(quiz);
+  // } else {
+  //   res.redirect("/quizzes/" + id);
+  // }
 });
 
 //* Delete a quiz by id
-router.get("/:id/delete", isAuthenticated, async (req, res) => {
-  const { id } = req.params;
+router.get("/:id/delete", async (req, res) => {
   const deleted = await Quiz.destroy({
-    where: { id },
+    where: { id: Number(req.params.id) },
   });
-  if (req.headers.accept.indexOf("/json") > -1) {
-    res.json({ success: true });
-  } else {
-    res.redirect("/quizzes");
-  }
+  res.redirect("/quizzes");
 });
 
 module.exports = router;
