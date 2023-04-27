@@ -1,4 +1,4 @@
-# Advanced Server-Side Languages
+# Advanced Server-Side Languages - Week 3
 
 ## Installing the project files
 
