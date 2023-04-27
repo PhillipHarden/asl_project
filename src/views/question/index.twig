@@ -1,0 +1,21 @@
+{% extends "layouts/_default.twig" %}
+
+
+{% block main_content %}
+	<div class="mt-5">
+		<h1>Questions</h1>
+		<ul class="list-group my-3">
+			{% for question in questions %}
+				<li class="list-group-item d-inline-block" style="background-color: #B6B6B4;">
+					<p class="lead">{{ question.question_text }}</p>
+					<a class="btn btn-primary" href="/questions/{{ question.id }}/edit">Edit</a>
+					<a class="btn btn-primary" href="/questions/{{ question.id }}">Details</a>
+					<a class="btn btn-danger" href="/questions/{{ question.id }}/delete">Delete</a>
+				</li>
+			{% endfor %}
+		</ul>
+
+		<a class="btn btn-primary" href="/questions/new">Create a Question</a>
+		<a class="btn btn-primary" href="/">Return Home</a>
+	</div>
+{% endblock %}

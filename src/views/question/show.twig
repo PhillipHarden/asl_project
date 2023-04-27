@@ -1,0 +1,18 @@
+{% extends "layouts/_default.twig" %}
+
+{% block main_content %}
+	<div class="my-5">
+		<h1>Question Details</h1>
+		<p class="lead">{{ question.question_text }}</p>
+		<p>ID:
+			{{ question.id }}</p>
+		<p>Created At:
+			{{ question.createdAt }}</p>
+		<p>Updated At:
+			{{ question.updatedAt }}</p>
+		<a class="btn btn-primary" href="/questions/{{ question.id }}/edit">Edit</a>
+		<a class="btn btn-danger" href="/questions/{{ question.id }}/delete">Delete</a>
+		<a class="btn btn-primary" href="/questions">View Question</a>
+
+	</div>
+{% endblock %}

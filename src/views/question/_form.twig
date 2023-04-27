@@ -1,0 +1,23 @@
+<div class="mt-5">
+	{% if question %}
+		<h1>Editing a Question</h1>
+	{% else %}
+		<h1>Creating a Question</h1>
+	{% endif %}
+	{% if question %}
+		<form action="/questions/{{ question.id }}" method="post" class="my-3">
+		{% else %}
+			<form action="/questions" method="post">
+			{% endif %}
+			<div class="form-group my-1">
+				<label for="question_text">Question:</label>
+				{% if question %}
+					<input class="form-control" type="text" id="question_text" name="question_text" value="{{ question.question_text }}"/>
+				{% else %}
+					<input class="form-control" type="text" id="question_text" name="question_text"/>
+				{% endif %}
+			</div>
+			<input class="btn btn-primary my-1" type="submit" value="Save Question"/>
+			<a class="btn btn-primary" href="/questions">View Questions</a>
+		</form>
+	</div>

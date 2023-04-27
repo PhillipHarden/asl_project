@@ -1,0 +1,31 @@
+<div>
+	{% if quiz %}
+		<h1>Editing Quiz</h1>
+	{% else %}
+		<h1>Creating a Quiz</h1>
+	{% endif %}
+	{% if quiz %}
+		<form action="/quizzes/{{ quiz.id }}" method="post" class="my-3">
+		{% else %}
+			<form action="/quizzes" method="post">
+			{% endif %}
+			<div class="form-group my-1">
+				<label for="name">Name:</label>
+				{% if quiz %}
+					<input class="form-control" type="text" id="name" name="name" value="{{ quiz.name }}"/>
+				{% else %}
+					<input class="form-control" type="text" id="name" name="name"/>
+				{% endif %}
+			</div>
+			<div class="form-group my-1">
+				<label for="weight">Weight:</label>
+				{% if quiz %}
+					<input class="form-control" type="text" id="weight" name="weight" value="{{ quiz.weight }}"/>
+				{% else %}
+					<input class="form-control" type="text" id="weight" name="weight"/>
+				{% endif %}
+			</div>
+			<input class="btn btn-primary my-1" type="submit" value="Save Quiz"/>
+			<a class="btn btn-primary" href="/quizzes">View Quizzes</a>
+		</form>
+	</div>
