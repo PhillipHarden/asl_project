@@ -39,9 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Home page
 app.get("/", (req, res, next) => {
-  // res.render("home/home");
-  res.json("home")
-
+  res.json("home");
 });
 
 // Controllers for other pages

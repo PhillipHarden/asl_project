@@ -8,26 +8,12 @@ const { Choice, Question } = require("../models");
 
 //* View the choices
 //^ curl -H "accept: application/json" http://localhost:3000/choices
-// router.get("/", async (req, res) => {
-//   const choices = await Choice.findAll();
-//   if (req.headers.accept.indexOf("/json") > -1) {
-//     res.json(choices);
-//   } else {
-//     res.render("choice/index", { choices });
-//   }
-// });
-
-router.get('/', async (req, res) => {
-	const choices = await Choice.findAll({
-		include: Question
-	})
-	res.json(choices)
-})
-
-
-
-
-
+router.get("/", async (req, res) => {
+  const choices = await Choice.findAll({
+    include: Question,
+  });
+  res.json(choices);
+});
 
 //* Form
 router.get("/new", (req, res) => {
@@ -89,7 +75,7 @@ router.get("/:id/delete", async (req, res) => {
     where: { id },
   });
   if (req.headers.accept.indexOf("/json") > -1) {
-    res.json({'success': true});
+    res.json({ success: true });
   } else {
     res.redirect("/choices");
   }

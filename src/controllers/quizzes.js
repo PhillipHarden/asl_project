@@ -15,8 +15,6 @@ router.get("/", async (req, res) => {
   res.json(quizzes);
 });
 
-
-
 //* Form
 router.get("/new", (req, res) => {
   res.render("quiz/create");
@@ -59,11 +57,6 @@ router.post("/:id", async (req, res) => {
     }
   );
   res.json(quiz);
-  // if (req.headers.accept.indexOf("/json") > -1) {
-  //   res.json(quiz);
-  // } else {
-  //   res.redirect("/quizzes/" + id);
-  // }
 });
 
 //* Delete a quiz by id
