@@ -23,16 +23,16 @@ const Quiz = () => {
   return (
     <div className="mb-5">
       <form id="quiz">
-        <h1 className="mb-4">{quiz.name} Quiz</h1>
-        <ul className="no-style">
+        <h1 className="mb-4">{quiz.name}</h1>
+        <div>
           {quiz.Questions.map((q) => (
-            <li key={q.id} className="">
+            <div key={q.id}>
               <p className="h4 my-3">{q.question_text}</p>
-              <ul className="no-style">
-                <li>
+              <div>
+                <p>
                   {q.Choices.map((c) => (
-                    <div key={c.id} className="list-group">
-                      <label className="list-group-item">
+                    <div key={c.id}>
+                      <label>
                         <input
                           type="radio"
                           name={"question_" + q.id}
@@ -43,12 +43,12 @@ const Quiz = () => {
                       </label>
                     </div>
                   ))}
-                </li>
-              </ul>
-            </li>
+                </p>
+              </div>
+            </div>
           ))}
-        </ul>
-        <button type="submit" className="btn btn-primary">
+        </div>
+        <button type="submit" className="btn btn-primary mt-4">
           Submit Quiz
         </button>
       </form>
