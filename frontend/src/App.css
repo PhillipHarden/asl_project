@@ -3,7 +3,7 @@
 
 * {
   font-family: 'Asap', sans-serif;  
-  color: #100c08;
+  color: var(--background_color);
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -11,7 +11,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 body {
-  background-color: #666699;
+  background-color: var(--body_background);
 }
 
 .hero-image {
@@ -25,7 +25,7 @@ body {
 }
 
 .list-link {
-  color: #100c08;
+  color: var(--link_color);
   font-family: 'Lato', sans-serif;
 }
 

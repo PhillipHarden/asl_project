@@ -21,7 +21,7 @@ const Quiz = () => {
   }, []);
 
   return (
-    <div classname="mb-5">
+    <div className="mb-5">
       <form id="quiz">
         <h1 className="mb-4">{quiz.name} Quiz</h1>
         <ul className="no-style">

@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import DarkMode from "../DarkMode";
 
 class NavBar extends Component {
+  
   render() {
+    const logoutUser = () => {
+      console.log("log out user");      
+    }
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-sm px-5">
@@ -37,7 +42,7 @@ class NavBar extends Component {
               )}
               {this.props.isLoggedIn ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="#">
+                  <Link className="nav-link" to="#" onClick={logoutUser} >
                     Logout
                   </Link>
                 </li>
@@ -53,6 +58,7 @@ class NavBar extends Component {
               )}  
             </ul>
           </div>
+          <DarkMode />
         </div>
       </nav>
     );
