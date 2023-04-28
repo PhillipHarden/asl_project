@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import queryString from 'querystring'
+import HeroImage from "../images/hero.jpg";
 
 
 const Home = () => {
@@ -19,17 +20,16 @@ const Home = () => {
 		fetchQuizes()
 	}, []);
 	return (
-		<div>
-			<h1>Take a Quiz!</h1>
-			<p>Click on any quiz listed below to take one.</p>
-			<ul>
-				{quizzes.map(q => (
-					<li key={q.id}>
-						<Link to={'/quizzes/' + q.id}>{q.name}</Link>
-					</li>
-				))}
-			</ul>
-		</div>
+        
+        <div className="text-center">
+          <h1 className="mb-4">Welcome to Takin' Quizzes!!</h1>
+          <img
+            src={HeroImage}
+            alt="Image of a woman ready to take a quiz"
+            className="hero-image img-fluid"
+          />
+        </div>
+     
 	)
 }
 
