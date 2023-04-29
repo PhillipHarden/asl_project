@@ -1,0 +1,17 @@
+{% extends "layouts/_default.twig" %}
+
+{% block main_content %}
+	<div class="my-5">
+		<h1>Choice Details</h1>
+		<p class="lead">{{ choice.choice_text }}</p>
+		<p>ID:
+			{{ choice.id }}</p>
+		<p>Created At:
+			{{ choice.createdAt }}</p>
+		<p>Updated At:
+			{{ choice.updatedAt }}</p>
+		<a class="btn btn-primary" href="/choices/{{ choice.id }}/edit">Edit</a>
+		<a class="btn btn-danger" href="/choices/{{ choice.id }}/delete">Delete</a>
+		<a class="btn btn-primary" href="/choices">View Choices</a>
+	</div>
+{% endblock %}

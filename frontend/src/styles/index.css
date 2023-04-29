@@ -1,0 +1,15 @@
+:root {
+  --body_background: #D3D3D3;
+  --body_color: #353935;
+  --link_color: #008B8B;
+}
+
+[data-theme="dark"] {
+  --body_background: #353935;
+  --body_color: #FFDEAD;
+  --link_color: cyan;
+}
+
+* {
+  transition: all 0.3s ease-in-out;
+}

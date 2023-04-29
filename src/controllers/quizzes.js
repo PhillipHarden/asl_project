@@ -1,33 +1,52 @@
 const express = require("express");
 const router = express.Router();
-const { Quiz } = require("../models");
 const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({ extended: false }));
+const { isAuthenticated } = require("../middlewares/auth");
+const { Quiz, Question, Choice } = require("../models/index");
+const { quizzIsValid } = require("../middlewares/forms");
 
 //* View the quizzes
-//^ curl -X GET http://localhost:3000/quizzes
+//? http://localhost:3000/quizzes
 router.get("/", async (req, res) => {
-  const quizzes = await Quiz.findAll(); // Loads all Quizzes
+  const quizzes = await Quiz.findAll({
+    include: [{ model: Question, include: [Choice] }],
+  });
   res.json(quizzes);
 });
 
+//* Form
+router.get("/new", (req, res) => {
+  res.render("quiz/create");
+});
+
 //* Create a new quiz
-//^ curl -X POST --data "name=Quiz One&weight=10" http://localhost:3000/quizzes
 router.post("/", async (req, res) => {
   const { name, weight } = req.body;
   const quiz = await Quiz.create({ name, weight });
-  res.json(quiz);
+  if (req.headers.accept.indexOf("/json") > -1) {
+    res.json(quiz);
+  } else {
+    res.redirect("/quizzes/" + quiz.id);
+  }
 });
 
 //* View a single Quiz by id
-//^ curl -X GET http://localhost:3000/quizzes/1
+//? http://localhost:3000/quizzes/1
 router.get("/:id", async (req, res) => {
-  const quiz = await Quiz.findByPk(req.params.id);
+  const quiz = await Quiz.findByPk(Number(req.params.id), {
+    include: [{ model: Question, include: [Choice] }],
+  });
   res.json(quiz);
 });
 
+//* Form
+router.get("/:id/edit", async (req, res) => {
+  const quiz = await Quiz.findByPk(req.params.id);
+  res.render("quiz/edit", { quiz });
+});
+
 //* Update/Edit a quiz by id
-//^ curl -X POST --data "weight=30" http://localhost:3000/quizzes/8
 router.post("/:id", async (req, res) => {
   const { name, weight } = req.body;
   const { id } = req.params;
@@ -41,20 +60,11 @@ router.post("/:id", async (req, res) => {
 });
 
 //* Delete a quiz by id
-//^ curl -X DELETE http://localhost:3000/quizzes/8
-router.delete("/:id", async (req, res) => {
-  const { id } = req.params;
+router.get("/:id/delete", async (req, res) => {
   const deleted = await Quiz.destroy({
-    where: { id },
+    where: { id: Number(req.params.id) },
   });
-  res.json({ deleted });
+  res.redirect("/quizzes");
 });
 
 module.exports = router;
-
-
-//^ Adding quizzes
-//! curl -X POST --data "name=Quiz One&weight=35" http://localhost:3000/quizzes
-
-//! curl -X POST --data "name=Quiz Two&weight=25" http://localhost:3000/quizzes
-//! curl -X POST --data "name=Quiz Four&weight=50" http://localhost:3000/quizzes
