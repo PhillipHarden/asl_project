@@ -1,4 +1,4 @@
-# Advanced Server-Side Languages - final is working on this branch, add validation
+# Advanced Server-Side Languages
 
 
 ## Installing the project files
