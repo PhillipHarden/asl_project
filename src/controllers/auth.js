@@ -13,7 +13,7 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/success", (req, res) => {
-  res.redirect("http://localhost:3001/success");
+  res.redirect("http://localhost:3003/success");
 });
 
 router.get("/logout", (req, res) => {
@@ -39,7 +39,7 @@ router.get("/callback", async (req, res) => {
       console.log(access_token);
       const loginToken = await LoginToken.create({ token: access_token });
       console.log(loginToken);
-      res.redirect("http://localhost:3001?token=" + access_token);
+      res.redirect("http://localhost:3003?token=" + access_token);
       //&------------------------------------------------
       // await request(
       //   {

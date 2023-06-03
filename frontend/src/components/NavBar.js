@@ -38,6 +38,7 @@ class NavBar extends Component {
                     Quizzes
                   </Link>
                 </li>
+                
               )}
               {this.props.isLoggedIn ? (
                 <li className="nav-item">
@@ -55,6 +56,11 @@ class NavBar extends Component {
                   </Link>
                 </li>
               )}
+              <li className="nav-item">
+                  <Link className="nav-link" to="/QuizForm">
+                    Form
+                  </Link>
+                </li>
               <li>
                 <DarkMode />
               </li>

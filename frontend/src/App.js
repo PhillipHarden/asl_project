@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Quiz from "./pages/Quiz";
 import Quizzes from "./pages/Quizzes";
 import queryString from "querystring";
+import QuizForm from "./pages/QuizForm";
 
 const App = () => {
   const [jwt, setJwt] = useState("");
@@ -15,11 +16,11 @@ const App = () => {
       const params = queryString.parse(
         window.location.search.replace(/^\?/, "")
       );
-      console.log(localStorage.token);
-      console.log(params.token);
+      // console.log(localStorage.token);
+      // console.log(params.token);
       localStorage.token = params.token;
-      console.log(localStorage.token);
-      console.log(params.token);
+      // console.log(localStorage.token);
+      // console.log(params.token);
       const response = await axios("http://localhost:3000/auth/token/", {
         headers: {
           token: localStorage.token,
@@ -39,6 +40,7 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/Quizzes" element={<Quizzes />} />
             <Route exact path="/quizzes/:id" element={<Quiz />} />
+            <Route exact path="/QuizForm" element={<QuizForm />} />
           </Routes>
         </div>
       </div>

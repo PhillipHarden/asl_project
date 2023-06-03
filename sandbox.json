@@ -1,0 +1,58 @@
+{
+    "quizId": "ad029e6b-003c-4d1d-b4ff-9b2e95ecfaf1",
+    "name": "New question edited",
+    "weight": "75",
+    "questions": [
+        {
+            "questionId": "b49631e8-dc03-4544-9cd4-6a78bf0f6b36",
+            "question_text": "New question",
+            "quizId": "",
+            "choices": [
+                {
+                    "choiceId": "5a0c01b9-2907-4c49-9665-fb2c3722e3cf",
+                    "choice_text": "choice 1",
+                    "questionId": "b49631e8-dc03-4544-9cd4-6a78bf0f6b36"
+                },
+                {
+                    "choiceId": "5d041cc7-0faa-49ff-ae13-3484cf0e0a8a",
+                    "choice_text": "choice 2",
+                    "questionId": "b49631e8-dc03-4544-9cd4-6a78bf0f6b36"
+                }
+            ]
+        },
+        {
+            "questionId": "a5a1e81c-b965-4e9b-8f30-fc47950639fc",
+            "question_text": "Question two",
+            "quizId": "ad029e6b-003c-4d1d-b4ff-9b2e95ecfaf1",
+            "choices": [
+                {
+                    "choiceId": "760aab21-f81f-45b8-8a05-934f1e6a5cd5",
+                    "choice_text": "choice a",
+                    "questionId": "a5a1e81c-b965-4e9b-8f30-fc47950639fc"
+                },
+                {
+                    "choiceId": "2e9eaa7c-9d30-4b93-bcf9-c857e94bc601",
+                    "choice_text": "choice b",
+                    "questionId": "a5a1e81c-b965-4e9b-8f30-fc47950639fc"
+                }
+            ]
+        },
+        {
+            "questionId": "82aca785-53fc-4dcc-b463-b4956718b032",
+            "question_text": "New question three?",
+            "quizId": "ad029e6b-003c-4d1d-b4ff-9b2e95ecfaf1",
+            "choices": [
+                {
+                    "choiceId": "f029471d-edf2-40be-b0e8-e9d8a75ea420",
+                    "choice_text": "yes",
+                    "questionId": "82aca785-53fc-4dcc-b463-b4956718b032"
+                },
+                {
+                    "choiceId": "e63b2ffa-59eb-4d5a-a231-82d58d356e10",
+                    "choice_text": "no",
+                    "questionId": "82aca785-53fc-4dcc-b463-b4956718b032"
+                }
+            ]
+        }
+    ]
+}
