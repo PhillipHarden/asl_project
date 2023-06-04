@@ -19,9 +19,7 @@ app.use(
 
 // statement needed for css file to work
 app.use(express.static(__dirname + "/src"));
-
 app.set("views", __dirname + "/src/views");
-
 app.set("view engine", "twig");
 
 app.use(
@@ -48,9 +46,13 @@ app.use("/choices", choicesCtrl);
 app.use("/questions", questionsCtrl);
 app.use("/auth", authCtrl);
 
-app.listen(3000, function () {
-  console.log("Server is running on port 3000");
+app.listen(process.env.PORT || 3000, function () {
+  console.log("Server is running on Heroku");
 }); // http://localhost:3000/ in the web browser
+
+// app.listen(3000, function () {
+//   console.log("Server is running on port 3000");
+// }); // http://localhost:3000/ in the web browser
 
 // COLORFUL COMMENTS
 //! Red (!)

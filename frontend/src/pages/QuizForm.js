@@ -63,7 +63,7 @@ const QuizForm = () => {
 
   const addQuestion = () => {
     console.log({ quizData });
-    if (!quizData.id) {
+    if (quizData.id) {
       console.log("question has quizid");
     }
     setQuizData((prevState) => {
